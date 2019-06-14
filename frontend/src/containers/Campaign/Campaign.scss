@@ -1,0 +1,167 @@
+@import '../../Vars.scss';
+
+.campaign-chart {
+  margin-bottom: 30px;
+  padding: 10px 20px 0 14px;
+  border: 1px solid #e2e2e2;
+  border-left: none;
+  border-right: none;
+  background-color: #fff;
+}
+
+.campaign-data-grid {
+  .percentages {
+    font-weight: 600;
+  }
+
+  .section-id {
+    color: #8d8d8d;
+  }
+
+  .section-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: #2f2e32;
+  }
+}
+
+@media (min-width: $bp_phone + 1px) {
+  .campaign-data-grid {
+    [data-section="general"] {
+      width: 28%;
+    }
+
+    [data-section="increase"] {
+      width: 40%;
+    }
+
+    [data-section="price"],
+    [data-section="promo"] {
+      width: 16%;
+    }
+
+    .cell-sales,
+    .cell-volume {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: $bp_desktop_l - 1px) {
+  .campaign-data-grid .table-header-groups [data-section="general"] {
+    display: none;
+  }
+}
+
+@media (min-width: $bp_phone + 1px) and (max-width: $bp_desktop_l - 1px) {
+  .campaign-data-grid {
+    table tbody td,
+    .table-columns-header th,
+    tbody .mobile-label {
+      display: none;
+    }
+
+    tbody tr td:first-child,
+    .table-columns-header th:first-child {
+      padding-left: 30px;
+    }
+
+    [data-section] {
+      width: auto;
+    }
+
+    td[data-section="general"],
+    table[data-selected="promo"] tbody [data-section="promo"],
+    table[data-selected="price"] tbody [data-section="price"],
+    table[data-selected="increase"] tbody [data-section="increase"] {
+      display: table-cell;
+    }
+
+    .table-columns-header th[data-section="general"],
+    table[data-selected="promo"] .table-columns-header th[data-section="promo"],
+    table[data-selected="price"] .table-columns-header th[data-section="price"],
+    table[data-selected="increase"] .table-columns-header th[data-section="increase"] {
+      display: table-cell;
+    }
+
+    td[data-section="general"],
+    .table-columns-header th[data-section="general"] {
+      width: 150px;
+    }
+
+    .table-header-groups th[data-section="general"] + th {
+      margin-left: 30px;
+    }
+  }
+}
+
+@media (max-width: $bp_phone) {
+  .campaign-data-grid {
+    tbody .cell-campaign .mobile-label {
+      display: none;
+    }
+
+    tbody td {
+      padding-top: 5px;
+
+      &:not(.last-of-section):not([data-section="general"]) > * {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #dfdfdf88;
+      }
+    }
+
+    tbody td:not([data-section="general"]) {
+      display: none;
+    }
+
+    tbody td[data-section="general"] + td {
+      padding-top: 15px;
+    }
+
+    table[data-selected="promo"] tbody [data-section="promo"],
+    table[data-selected="price"] tbody [data-section="price"],
+    table[data-selected="increase"] tbody [data-section="increase"] {
+      display: grid;
+    }
+
+    .cell-campaign {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .cell-sales {
+      grid-column: 1/1;
+    }
+
+    .cell-volume {
+      grid-column: 2/2;
+    }
+
+    .cell-sales,
+    .cell-volume {
+      display: flex;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #dfdfdf;
+
+      .mobile-label:first-child {
+        padding: 0 10px 0 0;
+      }
+
+      .value {
+        padding-top: 2px;
+        font-size: 12px;
+        color: #404040;
+      }
+    }
+
+    .section-id {
+      padding: 15px 0 5px 0;
+    }
+
+    .section-name {
+      padding-top: 3px;
+    }
+  }
+}

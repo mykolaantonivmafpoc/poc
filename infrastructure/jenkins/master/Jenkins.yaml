@@ -1,0 +1,69 @@
+jenkins:
+  systemMessage: "Jenkins server for MAF project"
+  remotingSecurity:
+    enabled: true
+  numExecutors: 1
+  scmCheckoutRetryCount: 2
+  mode: NORMAL
+  quietPeriod: 5
+  crumbIssuer: 
+    standard:
+       excludeClientIPFromCrumb: true
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  securityRealm:
+    github:
+      githubWebUri: "https://github.com"
+      githubApiUri: "https://api.github.com"
+      clientID: "96ace92760dd049c7abc"
+      clientSecret: "287bef1f21c74c88b84978c7a2a1ea0a0daa3b6d"
+      oauthScopes: "read:org,user:email,repo"
+
+  # authorizationSt7ategy:
+  #   globalMatrix:
+  #     permissions:
+  #       - "View/Delete:authenticated"
+  #       - "View/Read:authenticated"
+  #       - "View/Configure:authenticated"
+  #       - "View/Create:authenticated"
+  #       - "Job/Read:authenticated"
+  #       - "Job/Build:authenticated"
+  #       - "Job/Configure:authenticated"
+  #       - "Job/Create:authenticated"
+  #       - "Job/Delete:authenticated"
+  #       - "Job/Discover:authenticated"
+  #       - "Job/Move:authenticated"
+  #       - "Job/Workspace:authenticated"
+  #       - "Job/Cancel:authenticated"
+  #       - "Run/Delete:authenticated"
+  #       - "Run/Replay:authenticated"
+  #       - "Run/Update:authenticated"
+  #       - "SCM/Tag:authenticated"8
+  #       - "Overall/Read:anonymous"
+  #       - "Overall/Administer:authenticated"
+
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+
+jobs:
+  - script: >
+      pipelineJob('pipeline') {
+          definition {
+              cpsScm {
+                  scriptPath 'Jenkinsfile'
+                  scm {
+                    git {
+                        remote { url 'https://github.com/mykolaantoniv/maf_poc.git' }
+                        branch 'develop'
+                        extensions {}
+                    }
+                  }
+              }
+          }
+      }

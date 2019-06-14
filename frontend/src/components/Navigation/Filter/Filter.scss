@@ -1,0 +1,172 @@
+@import '../../../Vars.scss';
+
+.filters-wrapper {
+  display: inline-block;
+  position: fixed;
+  width: 280px;
+  min-height: 100vh;
+  right: 0;
+  padding-top: 12px;
+  z-index: 5;
+  background: white;
+  border-left: 1px solid #dfdfdf;
+
+  .custom-button {
+    text-align: center;
+    padding: 5px;
+    width: 47%;
+    height: 40px;
+    margin: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    &.btn-dark {
+      margin-right: 5px;
+    }
+
+    &.btn-light {
+      margin-left: 5px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/* Filter Header */
+
+.filters-header {
+  height: 50px;
+  margin: 15px 35px 0 35px;
+
+  .close-btn {
+    float: right;
+
+    img {
+      width: 18px;
+      height: 40px;
+      vertical-align: middle;
+    }
+  }
+
+  .filters-label-image {
+    width: 25px;
+  }
+
+  .filters-label {
+    font-size: 17px;
+    color: #404040;
+    padding-left: 8px;
+    font-weight: 600;
+
+    .heading {
+      font-weight: 600;
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .cancel-button-image {
+      width: 18px;
+      height: 35px;
+    }
+  }
+}
+
+.filter-body {
+  margin: 10px 35px;
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  select {
+    font-size: 12px;
+    line-height: 1.25px;
+    color: #8d8d8d;
+  }
+
+  /* Date Picker */
+  .datepicker-wrapper {
+    &.from-date {
+      padding-right: 5px;
+    }
+
+    &.to-date {
+      padding-left: 5px;
+    }
+
+    input {
+      font-size: 10px;
+      padding: 4px;
+    }
+  }
+
+  [type='date'] {
+    background: #fff url(./calendar.svg) 92% 50% no-repeat;
+    // background-size: 15px;
+    // background-position-x: 72px;
+  }
+
+  [type="date"]::-webkit-clear-button {
+    // display: none;
+    margin-right: 0;
+  }
+
+  /* Hide the cancel button */
+  [type='date']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  /* Hide the magnifying glass */
+  [type='date']::-webkit-search-results-button {
+    -webkit-appearance: none;
+  }
+
+  [type='date']::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  [type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+}
+
+@media only screen and (min-width: $bp_phone) {
+  .filters-wrapper {
+    width: 285px;
+
+    .buttons-wrapper {
+      min-height: 100px;
+
+      .apply,
+      .clear {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $bp_desktop_xs) {
+  .filters-wrapper {
+    .buttons-wrapper {
+      .apply {
+        width: 45%;
+        float: left;
+      }
+
+      .clear {
+        width: 45%;
+      }
+    }
+
+    .cancel-button-image {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+@import 'Vars.scss';
+
+/* Fonts */
+
+@font-face {
+  font-family: OpenSans;
+  src: url('./assets/fonts/OpenSans-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url('./assets/fonts/OpenSans-SemiBold.ttf');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: OpenSans;
+  src: url('./assets/fonts/OpenSans-Bold.ttf');
+  font-weight: 700;
+}
+
+body {
+  font-family: $font_family_main;
+  background-color: #fafafa;
+}

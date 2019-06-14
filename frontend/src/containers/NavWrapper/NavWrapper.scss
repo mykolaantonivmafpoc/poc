@@ -1,0 +1,38 @@
+@import '../../Vars.scss';
+
+.main-c {
+  height: 1000px;
+  width: calc(100% - 430px);
+  margin-left: 80px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media only screen and  (max-width: $bp_desktop_xs) {
+  .main-c {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 55px);
+    z-index: -1;
+    margin-left: 0;
+    margin-top: 55px;
+  }
+}
+
+@media only screen and (min-width: $bp_desktop_xs + 1px) {
+  .main-c {
+    position: absolute;
+    width: calc(100% - 364px);
+    height: 100vh;
+    z-index: -1;
+    margin-top: 0;
+    margin-left: 80px;
+  }
+
+  .left-menu-wrapper {
+    display: block;
+    width: 80px;
+    height: 100vh;
+    background-color: #2f2e32;
+  }
+}

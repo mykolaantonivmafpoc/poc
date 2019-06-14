@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.db
+    container_name: db
+    environment:
+      POSTGRES_PASSWORD: dbpassword
+    ports:
+      - '5432:5432'
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: api
+    environment:
+      SQLALCHEMY_DATABASE_URI: 'postgresql+psycopg2://postgres:dbpassword@postgres:5432/postgres'
+    ports:
+      - '8080:80'
+
+  static:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.static
+    container_name: static
+    ports:
+      - '8888:80'
+
