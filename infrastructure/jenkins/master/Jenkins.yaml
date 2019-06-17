@@ -59,8 +59,8 @@ jobs:
                   scriptPath 'Jenkinsfile'
                   scm {
                     git {
-                        remote { url 'https://github.com/mykolaantoniv/maf.git' }
-                        branch 'develop'
+                        remote { url 'https://github.com/mykolaantonivmafpoc/poc.git' }
+                        branch 'master'
                         extensions {}
                     }
                   }
