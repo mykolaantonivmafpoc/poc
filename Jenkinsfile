@@ -39,7 +39,10 @@ pipeline
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    docker.build("$IMAGE","examples/pipelines/TAP_docker_image_build_push_ecr")
+                    // docker.build("$IMAGE","examples/pipelines/TAP_docker_image_build_push_ecr")
+                    sh 'docker build -t apiapp:1.0.0-stable -f docker/Dockerfile.api .'
+                    sh 'docker build -t stableapp:1.0.0-stable -f docker/Dockerfile.stable .'
+                    sh 'docker build -t dbapp:1.0.0-stable -f docker/Dockerfile.db .'
                 }
             }
         }
