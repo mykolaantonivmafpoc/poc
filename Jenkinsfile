@@ -34,45 +34,45 @@ pipeline
                 }
             }
         }
-        parallel 
-        {
-        stage('Docker build API')
-        {
-            steps
+        stage ('Build Docker Images') {  
+          parallel {
+            stage('Docker build API')
             {
+              steps
+              {
                 script
                 {
-                    // Build the docker image using a Dockerfile
-                    sh 'docker build -t "$APIIMAGE" -f docker/Dockerfile.api .'
+                  // Build the docker image using a Dockerfile
+                  sh 'docker build -t "$APIIMAGE" -f docker/Dockerfile.api .'
                 }
-            }
+              }
             
-        }
+            }
 
-        stage('Docker build STATIC')
-        {
-            steps
+            stage('Docker build STATIC')
             {
+              steps
+              {
                 script
                 {
-                    // Build the docker image using a Dockerfile
-                    sh 'docker build -t "$STATICIMAGE" -f docker/Dockerfile.static .'
+                  // Build the docker image using a Dockerfile
+                  sh 'docker build -t "$STATICIMAGE" -f docker/Dockerfile.static .'
                 }
-            }
+              }
             
-        }
-        stage('Docker build DB')
-        {
-            steps
+            }
+            stage('Docker build DB')
             {
+              steps
+              {
                 script
                 {
-                    // Build the docker image using a Dockerfile
-                    sh 'docker build -t "$DBIMAGE" -f docker/Dockerfile.db .'
+                  // Build the docker image using a Dockerfile
+                  sh 'docker build -t "$DBIMAGE" -f docker/Dockerfile.db .'
                 }
+              }
             }
-            
-        }
+          }
         }
         stage('Docker push')
         {
