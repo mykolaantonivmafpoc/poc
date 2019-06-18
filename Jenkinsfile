@@ -12,7 +12,7 @@ pipeline
         APIIMAGE = 'apiapp:1.0.0-stable'
         STATICIMAGE = 'staticeapp:1.0.0-stable'
         DBIMAGE = 'db:1.0.0-stable'
-        ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
+        ECRURL = 'http://499815815477.dkr.ecr.eu-west-1.amazonaws.com/test-poc'
         ECRCRED = 'ecr:eu-central-1:tap_ecr'
     }
     stages
@@ -34,6 +34,8 @@ pipeline
                 }
             }
         }
+        parallel 
+        {
         stage('Docker build API')
         {
             steps
@@ -71,7 +73,22 @@ pipeline
             }
             
         }
-        
+        }
+        stage('Docker push')
+        {
+            steps
+            {
+                script
+                {
+                    sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
+                    // Push the Docker image to ECR
+                    docker.withRegistry(ECRURL, ECRCRED)
+                    {
+                        docker.image(IMAGE).push()
+                    }
+                }
+            }
+        }
     }
     
     post
