@@ -10,6 +10,8 @@ pipeline
         VERSION = 'latest'
         PROJECT = 'tap_sample'
         APIIMAGE = 'apiapp:1.0.0-stable'
+        STATICIMAGE = 'staticeapp:1.0.0-stable'
+        DBIMAGE = 'db:1.0.0-stable'ß
         ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
         ECRCRED = 'ecr:eu-central-1:tap_ecr'
     }
@@ -40,28 +42,36 @@ pipeline
                 {
                     // Build the docker image using a Dockerfile
                     sh 'docker build -t "$APIIMAGE" -f docker/Dockerfile.api .'
-                    //sh 'docker build -t staticeapp:1.0.0-stable -f docker/Dockerfile.static.'
-                    //sh 'docker build -t db:1.0.0-stable -f docker/Dockerfile.db .'
                 }
             }
+            
         }
-        stage('Docker push')
+
+        stage('Docker build STATIC')
         {
             steps
             {
                 script
                 {
-                    sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
-                    // Push the Docker image to ECR
-                    docker.withRegistry(ECRURL, ECRCRED)
-                    {
-                        docker.image(IMAGE).push()
-                    }
+                    // Build the docker image using a Dockerfile
+                    sh 'docker build -t "$STATICIMAGE"-f docker/Dockerfile.static.'
                 }
             }
+            
         }
-    }
-    
+        stage('Docker build DB')
+        {
+            steps
+            {
+                script
+                {
+                    // Build the docker image using a Dockerfile
+                    sh 'docker build -t "$DBIMAGE" -f docker/Dockerfile.db .'
+                }
+            }
+            
+        }
+
     post
     {
         always
