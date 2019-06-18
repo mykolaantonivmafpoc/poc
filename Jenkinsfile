@@ -54,7 +54,7 @@ pipeline
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    sh 'docker build -t "$STATICIMAGE"-f docker/Dockerfile.static .'
+                    sh 'docker build -t "$STATICIMAGE" -f docker/Dockerfile.static .'
                 }
             }
             
