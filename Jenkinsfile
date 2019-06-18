@@ -39,8 +39,7 @@ pipeline
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    docker.build("$APIIMAGE","docker/Dockerfile.api .")
-                    //sh 'docker build -t apiapp:1.0.0-stable -f docker/Dockerfile.api .'
+                    sh 'docker build -t "$APIIMAGE" -f docker/Dockerfile.api .'
                     //sh 'docker build -t staticeapp:1.0.0-stable -f docker/Dockerfile.static.'
                     //sh 'docker build -t db:1.0.0-stable -f docker/Dockerfile.db .'
                 }
