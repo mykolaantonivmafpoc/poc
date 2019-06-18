@@ -79,7 +79,7 @@ pipeline
         always
         {
             // make sure that the Docker image is removed
-            sh "docker rmi $IMAGE | true"
+            sh "docker rm $(docker ps -a -q)"
         }
     }
 } 
