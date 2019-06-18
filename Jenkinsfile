@@ -11,7 +11,7 @@ pipeline
         PROJECT = 'tap_sample'
         APIIMAGE = 'apiapp:1.0.0-stable'
         STATICIMAGE = 'staticeapp:1.0.0-stable'
-        DBIMAGE = 'db:1.0.0-stable'ß
+        DBIMAGE = 'db:1.0.0-stable'
         ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
         ECRCRED = 'ecr:eu-central-1:tap_ecr'
     }
