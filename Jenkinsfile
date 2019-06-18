@@ -79,7 +79,7 @@ pipeline
         always
         {
             // make sure that the Docker image is removed
-            sh 'docker rm "$(docker ps -a -q)" --force'
+            sh 'docker rm ["$APIIMAGE", "$STATICIMAGE", $DBIMAGE"] --force'
         }
     }
 } 
