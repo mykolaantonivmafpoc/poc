@@ -9,7 +9,7 @@ pipeline
     {
         VERSION = 'latest'
         PROJECT = 'tap_sample'
-        IMAGE = 'tap_sample:latest'
+        APIIMAGE = 'apiapp:1.0.0-stable'
         ECRURL = 'http://999999999999.dkr.ecr.eu-central-1.amazonaws.com'
         ECRCRED = 'ecr:eu-central-1:tap_ecr'
     }
@@ -32,17 +32,17 @@ pipeline
                 }
             }
         }
-        stage('Docker build')
+        stage('Docker build API')
         {
             steps
             {
                 script
                 {
                     // Build the docker image using a Dockerfile
-                    // docker.build("$IMAGE","examples/pipelines/TAP_docker_image_build_push_ecr")
-                    sh 'docker build -t apiapp:1.0.0-stable -f docker/Dockerfile.api .'
-                    sh 'docker build -t stableapp:1.0.0-stable -f docker/Dockerfile.stable .'
-                    sh 'docker build -t dbapp:1.0.0-stable -f docker/Dockerfile.db .'
+                    docker.build("$APIIMAGE","docker/Dockerfile.api")
+                    //sh 'docker build -t apiapp:1.0.0-stable -f docker/Dockerfile.api .'
+                    //sh 'docker build -t staticeapp:1.0.0-stable -f docker/Dockerfile.static.'
+                    //sh 'docker build -t db:1.0.0-stable -f docker/Dockerfile.db .'
                 }
             }
         }
@@ -52,7 +52,6 @@ pipeline
             {
                 script
                 {
-                    // login to ECR - for now it seems that that the ECR Jenkins plugin is not performing the login as expected. I hope it will in the future.
                     sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
                     // Push the Docker image to ECR
                     docker.withRegistry(ECRURL, ECRCRED)
