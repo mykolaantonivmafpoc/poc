@@ -79,7 +79,7 @@ pipeline
         always
         {
             // make sure that the Docker image is removed
-            sh 'docker rm ["$APIIMAGE", "$STATICIMAGE", $DBIMAGE"] --force'
+            sh 'docker rsystem prune -f'
         }
     }
 } 
