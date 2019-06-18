@@ -79,7 +79,7 @@ pipeline
         always
         {
             // make sure that the Docker image is removed
-            sh 'docker rsystem prune --force'
+            sh 'docker system prune -f'
         }
     }
 } 
