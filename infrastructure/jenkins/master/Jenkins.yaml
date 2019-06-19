@@ -18,33 +18,10 @@ jenkins:
     github:
       githubWebUri: "https://github.com"
       githubApiUri: "https://api.github.com"
-      clientID: "b38a05d717a14ea2e4c2"
-      clientSecret: "da51db1a73b0dac18caefdf516f8cb808db4ad95"
+      clientID: "bf828dadc2d4e6a19a9c"
+      clientSecret: "54498a81ad4dd676c0ddca2b808e5b67afaad400"
       oauthScopes: "read:org,user:email,repo"
-
-  # authorizationSt7ategy:
-  #   globalMatrix:
-  #     permissions:
-  #       - "View/Delete:authenticated"
-  #       - "View/Read:authenticated"
-  #       - "View/Configure:authenticated"
-  #       - "View/Create:authenticated"
-  #       - "Job/Read:authenticated"
-  #       - "Job/Build:authenticated"
-  #       - "Job/Configure:authenticated"
-  #       - "Job/Create:authenticated"
-  #       - "Job/Delete:authenticated"
-  #       - "Job/Discover:authenticated"
-  #       - "Job/Move:authenticated"
-  #       - "Job/Workspace:authenticated"
-  #       - "Job/Cancel:authenticated"
-  #       - "Run/Delete:authenticated"
-  #       - "Run/Replay:authenticated"
-  #       - "Run/Update:authenticated"
-  #       - "SCM/Tag:authenticated"8
-  #       - "Overall/Read:anonymous"
-  #       - "Overall/Administer:authenticated"
-
+      
 tool:
   git:
     installations:

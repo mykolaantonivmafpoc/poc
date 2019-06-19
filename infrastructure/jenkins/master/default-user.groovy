@@ -1,4 +1,4 @@
-mport org.jenkinsci.plugins.GithubAuthorizationStrategy
+import org.jenkinsci.plugins.GithubAuthorizationStrategy
 import hudson.security.AuthorizationStrategy
  
 //permissions are ordered similar to web UI

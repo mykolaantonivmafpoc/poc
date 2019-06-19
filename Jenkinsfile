@@ -74,18 +74,13 @@ pipeline
             }
           }
         }
-        stage('Docker push')
+        stage('Test Docker compose')
         {
             steps
             {
                 script
                 {
-                    sh("eval \$(aws ecr get-login --no-include-email | sed 's|https://||')")
-                    // Push the Docker image to ECR
-                    docker.withRegistry(ECRURL, ECRCRED)
-                    {
-                        docker.image(IMAGE).push()
-                    }
+                    sh 'make'
                 }
             }
         }
